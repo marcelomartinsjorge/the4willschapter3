@@ -232,6 +232,41 @@
     text-transform:uppercase;
   }
 
+  /* ---------- CHAPTER NAV (link pro capítulo anterior/próximo) ---------- */
+  .chapter-nav{
+    display:flex;
+    justify-content:center;
+    gap:1rem;
+    margin-top:2.2rem;
+    flex-wrap:wrap;
+  }
+  .chapter-nav a{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    font-family:'Jost',sans-serif;
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--frost-dim);
+    border:1px solid var(--hairline);
+    padding:.75rem 1.3rem;
+    border-radius:999px;
+    transition:border-color .3s ease, color .3s ease;
+  }
+  .chapter-nav a:hover{
+    border-color:var(--gold);
+    color:var(--gold);
+  }
+  .chapter-nav a .cn-sub{
+    font-family:'Cinzel',serif;
+    font-size:.9rem;
+    text-transform:none;
+    letter-spacing:.02em;
+    margin-left:.2rem;
+  }
+
   /* ---------- AUDIO WIDGET ---------- */
   .audio-widget{
     position:fixed; right:1.1rem; bottom:1.1rem; z-index:40;
@@ -630,6 +665,9 @@
   </section>
 
   <footer class="endmark">End of Chapter III</footer>
+  <div class="chapter-nav">
+    <a href="https://marcelomartinsjorge.github.io/the4willschapter2/">← <span class="cn-sub">Laura D'Orrose — Beneath the Silk</span> Chapter II</a>
+  </div>
   </div>
 
   <div class="lang-content" data-lang="pt" id="langBlockPT">
@@ -747,6 +785,9 @@
   </section>
 
   <footer class="endmark">Fim do Capítulo III</footer>
+  <div class="chapter-nav">
+    <a href="https://marcelomartinsjorge.github.io/the4willschapter2/">← <span class="cn-sub">Laura D'Orrose — Sob a Seda</span> Capítulo II</a>
+  </div>
   </div>
 </main>
 
