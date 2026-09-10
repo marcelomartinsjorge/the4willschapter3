@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Knight — Chapter III · The Four Wills</title>
+<meta name="description" content="An interactive dark fantasy chapter — a knight without memory searches the White Capital for a girl he's sworn to protect, in the third chapter of The Four Wills.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Four Wills">
+<meta property="og:title" content="The Knight — Chapter III">
+<meta property="og:description" content="An interactive dark fantasy chapter — a knight without memory searches the White Capital for a girl he's sworn to protect, in the third chapter of The Four Wills.">
+<meta property="og:image" content="https://marcelomartinsjorge.github.io/the4willschapter3/assets/images/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://marcelomartinsjorge.github.io/the4willschapter3/">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Knight — Chapter III">
+<meta name="twitter:description" content="An interactive dark fantasy chapter — a knight without memory searches the White Capital for a girl he's sworn to protect, in the third chapter of The Four Wills.">
+<meta name="twitter:image" content="https://marcelomartinsjorge.github.io/the4willschapter3/assets/images/og-cover.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cinzel+Decorative:wght@700;900&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void: #0b0906;
+    --panel: #17130d;
+    --panel-2: #1d1810;
+    --frost: #e9e1cd;
+    --frost-dim: #9c9078;
+    --gold: #c6a15b;
+    --gold-soft: rgba(198,161,91,.35);
+    --crimson: #c23f3f;
+    --crimson-soft: rgba(194,63,63,.35);
+    --moon: #8ea3b4;
+    --moon-soft: rgba(142,163,180,.35);
+    --hairline: rgba(233,225,205,.12);
+    --dark: #0b0906;
+    --zone-accent: var(--gold);
+    --zone-accent-soft: var(--gold-soft);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--frost);
+    font-family:'Spectral', Georgia, serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--gold-soft); color:#fff; }
+
+  .eyebrow{
+    font-family:'Jost',sans-serif;
+    font-size:.72rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:500;
+  }
+
+  /* ---------- HERO / ENTRY ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    align-items:flex-end;
+    background:url('assets/images/hero.webp') center 30% / cover no-repeat;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, rgba(6,5,4,.15) 0%, rgba(6,5,4,.4) 45%, rgba(6,5,4,.93) 93%),
+      linear-gradient(90deg, rgba(6,5,4,.55) 0%, rgba(6,5,4,0) 35%, rgba(6,5,4,0) 65%, rgba(6,5,4,.55) 100%);
+  }
+  .hero-inner{
+    position:relative;
+    width:100%;
+    max-width:900px;
+    margin:0 auto;
+    padding:0 2rem 5.5rem;
+    text-align:center;
+  }
+  .hero h1{
+    font-family:'Cinzel Decorative', 'Cinzel', serif;
+    font-weight:700;
+    font-size:clamp(2.7rem, 8.5vw, 5.6rem);
+    letter-spacing:.05em;
+    margin:.5rem 0 .3rem;
+    color:#f7f2e4;
+    -webkit-text-stroke:1.25px var(--gold);
+    text-stroke:1.25px var(--gold);
+    text-shadow: 0 0 34px rgba(156,122,46,.45), 0 4px 26px rgba(0,0,0,.7);
+  }
+  .hero .subtitle{
+    font-family:'Cinzel',serif;
+    font-weight:500;
+    font-size:clamp(1rem,2.4vw,1.3rem);
+    letter-spacing:.1em;
+    color:var(--gold);
+    margin:0 0 2.4rem;
+  }
+  .hero .book-line{
+    font-family:'Jost',sans-serif;
+    font-size:.78rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:#c9c1b0;
+    margin:0 0 1.6rem;
+  }
+
+  .enter-btn{
+    position:relative;
+    font-family:'Jost',sans-serif;
+    font-size:.85rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#f7f2e4;
+    background:transparent;
+    border:1px solid var(--gold-soft);
+    padding:.95rem 2.3rem;
+    border-radius:2px;
+    cursor:pointer;
+    overflow:hidden;
+    transition:border-color .4s ease, color .4s ease, box-shadow .5s ease;
+  }
+  .enter-btn::before{
+    content:"";
+    position:absolute; left:-40%; top:0; bottom:0; width:35%;
+    background:linear-gradient(90deg, transparent, rgba(156,122,46,.5), transparent);
+    transform:skewX(-20deg);
+    transition:left 1.1s ease;
+  }
+  .enter-btn:hover{
+    border-color:var(--gold);
+    color:#fff;
+    box-shadow:0 0 24px rgba(156,122,46,.3);
+  }
+  .enter-btn:hover::before{ left:130%; }
+  .enter-btn .state{ font-family:'Spectral',serif; font-style:italic; opacity:.8; margin-left:.6em; letter-spacing:0; text-transform:none; font-size:.85em;}
+
+  .scroll-cue{
+    position:absolute; left:50%; bottom:1.6rem; transform:translateX(-50%);
+    font-family:'Jost',sans-serif; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
+    color:#c9c1b0; display:flex; flex-direction:column; align-items:center; gap:.5rem;
+    animation:bob 2.6s ease-in-out infinite; opacity:.85;
+  }
+  .scroll-cue .line{width:1px; height:26px; background:linear-gradient(var(--gold), transparent);}
+  @keyframes bob{ 0%,100%{transform:translate(-50%,0);} 50%{transform:translate(-50%,6px);} }
+
+  /* ---------- READING COLUMN ---------- */
+  main{
+    max-width:680px;
+    margin:0 auto;
+    padding: 6.5rem 1.6rem 8rem;
+  }
+  .chapter-mark{
+    text-align:center;
+    margin-bottom:4rem;
+  }
+  .chapter-mark .eyebrow{ display:block; margin-bottom:.6rem; }
+  .chapter-mark h2{
+    font-family:'Cinzel',serif; font-size:1.4rem; letter-spacing:.04em; font-weight:600;
+    color:var(--frost); margin:0;
+  }
+
+  section.zone{ transition:color .6s ease; }
+
+  p{
+    font-size:1.14rem;
+    line-height:1.85;
+    color:var(--frost);
+    margin:0 0 1.55em;
+    letter-spacing:.005em;
+  }
+  p em{ color:#f2e6c4; font-style:italic; }
+
+  p.first-p::first-letter{
+    font-family:'Cinzel',serif;
+    font-size:3.6rem;
+    font-weight:600;
+    float:left;
+    line-height:.85;
+    padding:.08em .12em 0 0;
+    color:var(--gold);
+    text-shadow:0 0 18px rgba(156,122,46,.35);
+  }
+
+  .divider{
+    text-align:center;
+    color:var(--zone-accent);
+    font-size:1.1rem;
+    letter-spacing:.5em;
+    margin:2.6rem 0 2.8rem;
+    opacity:.85;
+    transition:color .6s ease;
+  }
+
+  p.dialogue{
+    padding-left:1.1rem;
+    border-left:2px solid var(--zone-accent-soft);
+    color:#f3ecd8;
+    transition:border-color .6s ease;
+  }
+
+  /* glossary inline links */
+  .gloss{
+    color:var(--crimson);
+    text-decoration:none;
+    border-bottom:1px dotted var(--crimson);
+    cursor:pointer;
+    padding-bottom:.03em;
+    transition:color .3s ease, border-color .3s ease, text-shadow .3s ease;
+  }
+  .gloss:hover{
+    text-shadow:0 0 10px var(--crimson-soft);
+  }
+
+  footer.endmark{
+    text-align:center;
+    margin-top:4.5rem;
+    color:var(--frost-dim);
+    font-family:'Jost',sans-serif;
+    font-size:.75rem;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- AUDIO WIDGET ---------- */
+  .audio-widget{
+    position:fixed; right:1.1rem; bottom:1.1rem; z-index:40;
+    display:flex; align-items:center; gap:.65rem;
+    background:rgba(23,19,13,.88);
+    border:1px solid var(--hairline);
+    backdrop-filter:blur(8px);
+    padding:.6rem .9rem;
+    border-radius:999px;
+    font-family:'Jost',sans-serif;
+    box-shadow:0 8px 30px rgba(34,25,15,.18);
+  }
+  .audio-widget button{
+    all:unset; cursor:pointer; width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--panel-2); color:var(--frost);
+    border:1px solid var(--hairline);
+    transition:border-color .3s ease, color .3s ease;
+  }
+  .audio-widget button:hover{ border-color:var(--zone-accent); color:var(--zone-accent); }
+  .audio-widget .zone-label{
+    font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--frost-dim);
+    display:flex; flex-direction:column; line-height:1.25;
+  }
+  .audio-widget .zone-label b{ color:var(--zone-accent); font-weight:500; transition:color .5s ease; }
+  .bars{ display:flex; align-items:flex-end; gap:2px; height:12px; }
+  .bars i{ width:2px; background:var(--zone-accent); display:block; border-radius:1px; animation:eq 1.1s ease-in-out infinite; transition:background .5s ease;}
+  .bars i:nth-child(1){height:5px; animation-delay:-0.9s;}
+  .bars i:nth-child(2){height:11px; animation-delay:-0.5s;}
+  .bars i:nth-child(3){height:8px; animation-delay:-0.2s;}
+  .muted .bars i{ animation-play-state:paused; opacity:.25; }
+  @keyframes eq{ 0%,100%{height:3px;} 50%{height:12px;} }
+
+  /* ---------- CODEX MODAL ---------- */
+  .codex-overlay{
+    position:fixed; inset:0; z-index:100;
+    background:rgba(18,13,7,.72);
+    backdrop-filter:blur(3px);
+    display:flex; align-items:center; justify-content:center;
+    padding:1.4rem;
+    opacity:0; pointer-events:none;
+    transition:opacity .35s ease;
+  }
+  .codex-overlay.open{ opacity:1; pointer-events:auto; }
+
+  .codex-card{
+    width:100%; max-width:560px;
+    background:var(--panel);
+    border:1px solid var(--hairline);
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow:0 30px 90px rgba(10,8,6,.5), 0 0 0 1px rgba(156,122,46,.1);
+    transform:translateY(14px) scale(.98);
+    transition:transform .4s cubic-bezier(.2,.8,.2,1);
+  }
+  .codex-overlay.open .codex-card{ transform:translateY(0) scale(1); }
+
+  .codex-image-wrap{ position:relative; height:260px; overflow:hidden; background:var(--dark); }
+  .codex-image-bg{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover;
+    filter:blur(26px) brightness(.6) saturate(1.1);
+    transform:scale(1.2);
+  }
+  .codex-image{
+    position:relative; z-index:1;
+    width:100%; height:100%;
+    object-fit:contain; object-position:center;
+    display:block;
+    filter:drop-shadow(0 10px 30px rgba(0,0,0,.5));
+  }
+  .codex-image-wrap::after{
+    content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:linear-gradient(180deg, rgba(10,8,6,0) 55%, var(--panel) 100%);
+  }
+  .codex-close{
+    all:unset; position:absolute; top:.8rem; right:.8rem; z-index:2;
+    width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(10,8,6,.55); color:#fff; cursor:pointer;
+    font-family:'Jost',sans-serif; font-size:1rem;
+    border:1px solid rgba(255,255,255,.18);
+  }
+  .codex-close:hover{ background:rgba(10,8,6,.85); }
+
+  .codex-body{ padding:1.6rem 1.8rem 1.3rem; }
+  .codex-eyebrow{ font-family:'Jost',sans-serif; font-size:.68rem; letter-spacing:.24em; text-transform:uppercase; color:var(--codex-accent, var(--gold)); margin-bottom:.35rem;}
+  .codex-title{ font-family:'Cinzel',serif; font-size:1.5rem; font-weight:600; margin:0 0 1rem; color:var(--frost); }
+
+  .codex-pages{ position:relative; min-height:198px; }
+  .codex-page{ display:none; }
+  .codex-page.active{ display:block; }
+  .codex-page p{
+    font-size:1rem; line-height:1.72; color:var(--frost); margin:0 0 1em;
+  }
+  .codex-page p:last-child{ margin-bottom:0; }
+
+  .codex-foot{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:1.2rem; padding-top:1rem; border-top:1px solid var(--hairline);
+  }
+  .codex-nav{ all:unset; cursor:pointer; width:32px; height:32px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--frost); border:1px solid var(--hairline);
+    transition:border-color .3s ease, color .3s ease, opacity .3s ease;
+  }
+  .codex-nav:hover{ border-color:var(--codex-accent, var(--gold)); color:var(--codex-accent, var(--gold)); }
+  .codex-nav[disabled]{ opacity:.25; cursor:default; }
+  .codex-dots{ display:flex; gap:.4rem; }
+  .codex-dots span{ width:6px; height:6px; border-radius:50%; background:var(--hairline); transition:background .3s ease, transform .3s ease;}
+  .codex-dots span.active{ background:var(--codex-accent, var(--gold)); transform:scale(1.3); }
+
+  @media (max-width:560px){
+    main{ padding-top:4.5rem; }
+    .codex-image-wrap{ height:210px; }
+    .codex-body{ padding:1.3rem 1.3rem 1.1rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001s !important; transition-duration:.15s !important; }
+    html{ scroll-behavior:auto; }
+  }
+
+  .mist-canvas{
+    position:fixed; inset:0; width:100vw; height:100vh;
+    z-index:8; pointer-events:none;
+    opacity:1;
+    transition:opacity 2.5s ease;
+  }
+  .mist-canvas.dimmed{ opacity:0; }
+
+  /* ---------- LANGUAGE ---------- */
+  .lang-content{ display:none; }
+  .lang-content.active{ display:block; }
+
+  .lang-toggle{
+    position:fixed; top:1.1rem; right:1.1rem; z-index:50;
+    display:flex; align-items:center;
+    background:rgba(23,19,13,.88);
+    border:1px solid var(--hairline);
+    backdrop-filter:blur(8px);
+    border-radius:999px;
+    padding:.25rem;
+    box-shadow:0 8px 30px rgba(34,25,15,.18);
+    font-family:'Jost',sans-serif;
+  }
+  .lang-toggle button{
+    all:unset; cursor:pointer;
+    font-size:.72rem; letter-spacing:.12em; font-weight:500;
+    padding:.45rem .85rem; border-radius:999px;
+    color:var(--frost-dim);
+    transition:background .3s ease, color .3s ease;
+  }
+  .lang-toggle button.active{
+    background:var(--panel-2);
+    color:var(--gold);
+  }
+
+  /* ---------- NARRATION CUE ---------- */
+  .narration-wrap{
+    display:flex; justify-content:center;
+    margin: -1.2rem 0 2.4rem;
+  }
+  .narration-cue{
+    all:unset; cursor:pointer;
+    display:flex; align-items:center; gap:.55rem;
+    font-family:'Jost',sans-serif;
+    font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--frost-dim);
+    border:1px solid var(--hairline);
+    padding:.55rem 1.1rem;
+    border-radius:999px;
+    opacity:0; transform:translateY(6px);
+    transition:opacity .6s ease, transform .6s ease, border-color .3s ease, color .3s ease, background .3s ease;
+  }
+  .narration-cue.visible{ opacity:1; transform:translateY(0); }
+  .narration-cue:hover{ border-color:var(--zone-accent); color:var(--zone-accent); }
+  .narration-cue.playing{
+    border-color:var(--zone-accent);
+    color:var(--zone-accent);
+    background:rgba(156,122,46,.08);
+  }
+  .nc-icon{
+    width:20px; height:20px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid currentColor;
+    flex-shrink:0;
+  }
+  .nc-icon svg{ width:9px; height:9px; }
+  .nc-eq{ display:flex; align-items:flex-end; gap:1.5px; height:9px; }
+  .nc-eq i{ width:1.5px; background:currentColor; border-radius:1px; display:block; animation:eq 1.1s ease-in-out infinite; }
+  .nc-eq i:nth-child(1){height:4px; animation-delay:-0.9s;}
+  .nc-eq i:nth-child(2){height:9px; animation-delay:-0.5s;}
+  .nc-eq i:nth-child(3){height:6px; animation-delay:-0.2s;}
+  .narration-cue:not(.playing) .nc-eq{ display:none; }
+  .narration-cue.playing .nc-play{ display:none; }
+
+  /* ---------- VIDEO SCENE ---------- */
+  .scene-cue{
+    all:unset; cursor:pointer;
+    display:flex; align-items:center; gap:.6rem;
+    font-family:'Jost',sans-serif;
+    font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--frost-dim);
+    border:1px solid var(--hairline);
+    padding:.55rem 1.1rem .55rem .55rem;
+    border-radius:999px;
+    transition:border-color .3s ease, color .3s ease;
+  }
+  .scene-cue:hover{ border-color:var(--zone-accent); color:var(--zone-accent); }
+  .scene-wrap{ display:flex; justify-content:center; margin:.4rem 0 2.2rem; }
+  .sc-thumb{
+    width:44px; height:30px; border-radius:4px; overflow:hidden; position:relative; flex-shrink:0;
+    background:#000;
+  }
+  .sc-thumb video{ width:100%; height:100%; object-fit:cover; }
+  .sc-thumb::after{
+    content:""; position:absolute; inset:0;
+    background:rgba(0,0,0,.25);
+  }
+  .sc-thumb .sc-play-ico{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center; z-index:1;
+  }
+  .sc-play-ico svg{ width:9px; height:9px; fill:#fff; }
+
+  .video-overlay{
+    position:fixed; inset:0; z-index:110;
+    background:rgba(10,8,6,.9);
+    backdrop-filter:blur(4px);
+    display:flex; align-items:center; justify-content:center;
+    padding:1.4rem;
+    opacity:0; pointer-events:none;
+    transition:opacity .35s ease;
+  }
+  .video-overlay.open{ opacity:1; pointer-events:auto; }
+  .video-card{
+    width:100%; max-width:920px;
+    background:#000;
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow:0 30px 90px rgba(0,0,0,.7), 0 0 0 1px rgba(156,122,46,.12);
+    position:relative;
+    transform:scale(.97);
+    transition:transform .4s cubic-bezier(.2,.8,.2,1);
+  }
+  .video-overlay.open .video-card{ transform:scale(1); }
+  .video-card video{ width:100%; display:block; aspect-ratio:16/9; background:#000; }
+  .video-close{
+    all:unset; position:absolute; top:.7rem; right:.7rem; z-index:2;
+    width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(10,8,6,.6); color:#fff; cursor:pointer;
+    font-family:'Jost',sans-serif; font-size:1rem;
+    border:1px solid rgba(255,255,255,.18);
+  }
+  .video-close:hover{ background:rgba(10,8,6,.9); }
+  .video-caption{
+    font-family:'Jost',sans-serif; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--frost-dim); text-align:center; padding:.9rem 1rem;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="mistCanvas" class="mist-canvas" aria-hidden="true"></canvas>
+
+<div class="lang-toggle" id="langToggle">
+  <button data-lang="en" class="active">EN</button>
+  <button data-lang="pt">PT-BR</button>
+</div>
+
+<header class="hero" id="hero">
+  <div class="hero-inner">
+    <p class="book-line" data-en="The Four Wills · Book I" data-pt="As Quatro Vontades · Livro I">The Four Wills · Book I</p>
+    <p class="eyebrow" data-en="Chapter III" data-pt="Capítulo III">Chapter III</p>
+    <h1 data-en="The Knight" data-pt="O Cavaleiro">The Knight</h1>
+    <p class="subtitle" data-en="The Night Laura Was Six" data-pt="A Noite em que Laura Tinha Seis Anos">The Night Laura Was Six</p>
+    <button class="enter-btn" id="enterBtn"><span data-en="Enter the White Capital" data-pt="Entrar na Capital Branca">Enter the White Capital</span> <span class="state" id="enterState" data-en="✦ ambient sound" data-pt="✦ som ambiente">✦ ambient sound</span></button>
+  </div>
+  <div class="scroll-cue"><span class="line"></span><span data-en="scroll" data-pt="role">scroll</span></div>
+</header>
+
+<main>
+  <div class="lang-content active" data-lang="en" id="langBlockEN">
+  <div class="chapter-mark">
+    <span class="eyebrow">Chapter III</span>
+    <h2>The Knight — The Night Laura Was Six</h2>
+  </div>
+
+  <div class="narration-wrap">
+    <button class="narration-cue" data-audio="assets/audio/narration/line1.mp3">
+      <span class="nc-icon"><svg class="nc-play" viewBox="0 0 10 10" fill="currentColor"><polygon points="1,0 10,5 1,10"/></svg><span class="nc-eq"><i></i><i></i><i></i></span></span>
+      <span class="nc-text" data-en="Listen to the Knight" data-pt="Ouvir o Cavaleiro">Listen to the Knight</span>
+    </button>
+  </div>
+
+  <section class="zone" data-zone="patio">
+    <p class="first-p">I walk through the cold pre-dawn of the White Capital. I can't remember yesterday, and tomorrow doesn't concern me. My duty is as plain as Redom's walls: find the small girl. Nothing else matters until it's done.</p>
+
+    <p>I couldn't say how long I've been walking, or why these castle corridors feel foreign to me and yet I know exactly where each one leads. The stones under my feet hold the whole night's cold. The sound of my armor echoes across the empty courtyard, metal against flagstone, and a lone dog lifts its head in the shadow of the stables. It doesn't bark.</p>
+
+  </section>
+
+  <div class="divider">✦</div>
+  <div class="narration-wrap">
+    <button class="narration-cue" data-audio="assets/audio/narration/line2.mp3">
+      <span class="nc-icon"><svg class="nc-play" viewBox="0 0 10 10" fill="currentColor"><polygon points="1,0 10,5 1,10"/></svg><span class="nc-eq"><i></i><i></i><i></i></span></span>
+      <span class="nc-text" data-en="Listen to the Knight" data-pt="Ouvir o Cavaleiro">Listen to the Knight</span>
+    </button>
+  </div>
+
+  <section class="zone" data-zone="jardim">
+    <p>I cross a garden, skirting a tall statue of a woman holding a set of scales. Again that sense of having walked this way before — not memory, something thinner, but familiar all the same. At the end of the hall, a door stands ajar, a thread of candlelight slipping through.</p>
+  </section>
+
+  <div class="divider">✦</div>
+  <div class="narration-wrap">
+    <button class="narration-cue" data-audio="assets/audio/narration/line3.mp3">
+      <span class="nc-icon"><svg class="nc-play" viewBox="0 0 10 10" fill="currentColor"><polygon points="1,0 10,5 1,10"/></svg><span class="nc-eq"><i></i><i></i><i></i></span></span>
+      <span class="nc-text" data-en="Listen to the Knight" data-pt="Ouvir o Cavaleiro">Listen to the Knight</span>
+    </button>
+  </div>
+
+  <section class="zone" data-zone="quarto">
+    <p>Inside, a chair turned toward the window, and in it a child with fair hair, lit by moonlight, wax dripping down the candlestick beside her. Not just any child.</p>
+
+    <p class="dialogue">"I don't want to have to be queen," she says to the dark glass, her voice thick from crying until her throat hurt. "It isn't fair."</p>
+
+    <p>I lean against the wall by the window, without announcing myself.</p>
+
+    <p class="dialogue">"Why isn't it fair?"</p>
+
+    <p>My voice comes out steady, the way it always does, even speaking to a child who barely reaches my waist. She turns quickly, but doesn't cry out. Her eyes, red from crying, go straight to the sword at my hip and stay there.</p>
+
+    <p class="dialogue">"Because I want to be like you."</p>
+
+    <p class="dialogue">"Do you know what someone like me does?"</p>
+
+    <p>She doesn't answer, and not having an answer seems to make her want to cry again. I draw the sword slowly, just so she can see it, and the blade catches the candlelight and throws a white line across the ceiling.</p>
+
+    <p class="dialogue">"That's the coolest sword I've ever seen up close," she says, and there's no fear at all in her voice.</p>
+
+    <p class="dialogue">"Someone like me fights injustice."</p>
+
+    <p class="dialogue">"With that sword?"</p>
+
+    <p class="dialogue">"With courage."</p>
+
+    <p>She fights down her own hesitation — I see the exact instant she decides, her whole body leaning forward before her mouth opens.</p>
+
+    <p class="dialogue">"Can I hold it? Just a little?"</p>
+
+    <p class="dialogue">"Just a little. I have to leave soon."</p>
+
+    <p>I set the sword across both her hands, heavier than she expects — her arms drop an inch before she locks her elbows and holds firm. I lift her left hand off the pommel, guiding her to hold the grip with only one hand, and correct the right, which grips hard enough to shake.</p>
+
+    <p class="dialogue">"Mother and Father never let me hold a sword," she whispers.</p>
+
+    <p class="dialogue">"This stays between us, Laura."</p>
+
+    <p>The name leaves me before I decide to say it, too familiar for someone I've never met.</p>
+
+  <div class="scene-wrap">
+    <button class="scene-cue" data-video="assets/video/espada-laura.mp4">
+      <span class="sc-thumb"><span class="sc-play-ico"><svg viewBox="0 0 10 10"><polygon points="1,0 10,5 1,10"/></svg></span></span>
+      <span class="sc-label" data-en="Watch the scene" data-pt="Ver a cena">Watch the scene</span>
+    </button>
+  </div>
+
+    <p>I let her move the blade slowly, feet planted, hips turned just so. I correct her stance a few times, my hand on her shoulder, never on the weapon. She follows every correction without asking why.</p>
+
+    <p>After a few minutes, the weight wins out over the excitement, and she hands the sword back to me with both hands, carefully.</p>
+
+    <p class="dialogue">"You're the best knight there is."</p>
+
+    <p class="dialogue">"Will you be able to sleep now?"</p>
+
+    <p>She nods, a yawn breaking the motion in half. I lift her — too light, a weight I barely register in my arms — and lay her down, pulling the blanket up to her chin.</p>
+
+    <p class="dialogue">"Are you friends with my father?" she asks, her voice already sinking into sleep.</p>
+
+    <p>I think about the question longer than I should. I know no man I'd call a friend, and I don't remember having had a father, and still the question doesn't strike me as strange — only incomplete, like an answer that exists somewhere I can't reach.</p>
+
+    <p class="dialogue">"I'm only a knight. Sleep well, Laura."</p>
+
+    <p>She's asleep before I finish speaking. I retrace my path — the garden, the statue of the woman with the scales, the courtyard where the dog now sleeps. Stepping through the gate, I try to hold onto the child's face, and already I can't. Only a word remains, a name I don't remember learning and, even so, knew by heart.</p>
+
+  <div class="scene-wrap">
+    <button class="scene-cue" data-video="assets/video/portao-saida.mp4">
+      <span class="sc-thumb"><span class="sc-play-ico"><svg viewBox="0 0 10 10"><polygon points="1,0 10,5 1,10"/></svg></span></span>
+      <span class="sc-label" data-en="Watch the scene" data-pt="Ver a cena">Watch the scene</span>
+    </button>
+  </div>
+
+    <p style="text-align:center; margin-top:2.2rem;"><em>Laura.</em></p>
+  </section>
+
+  <footer class="endmark">End of Chapter III</footer>
+  </div>
+
+  <div class="lang-content" data-lang="pt" id="langBlockPT">
+  <div class="chapter-mark">
+    <span class="eyebrow">Capítulo III</span>
+    <h2>O Cavaleiro — A Noite em que Laura Tinha Seis Anos</h2>
+  </div>
+
+  <div class="narration-wrap">
+    <button class="narration-cue" data-audio="assets/audio/narration/line1.mp3">
+      <span class="nc-icon"><svg class="nc-play" viewBox="0 0 10 10" fill="currentColor"><polygon points="1,0 10,5 1,10"/></svg><span class="nc-eq"><i></i><i></i><i></i></span></span>
+      <span class="nc-text" data-en="Listen to the Knight" data-pt="Ouvir o Cavaleiro">Ouvir o Cavaleiro</span>
+    </button>
+  </div>
+
+  <section class="zone" data-zone="patio">
+    <p class="first-p">Caminho pela madrugada gelada da Capital Branca. Não consigo lembrar de ontem, nem me interesso pelo amanhã. Meu dever é claro como as muralhas de Redom: encontrar a pequena garota. Nada mais importa até que isso esteja feito.</p>
+
+    <p>Não sei dizer há quanto tempo ando, nem por que os corredores deste castelo me são estranhos e ao mesmo tempo sei exatamente onde vão dar. As pedras, sob os pés, guardam o frio da noite inteira. O som da minha armadura ecoa pelo pátio vazio, metal contra as lajes, e um cão solitário levanta a cabeça na sombra dos estábulos. Não late.</p>
+
+  </section>
+
+  <div class="divider">✦</div>
+  <div class="narration-wrap">
+    <button class="narration-cue" data-audio="assets/audio/narration/line2.mp3">
+      <span class="nc-icon"><svg class="nc-play" viewBox="0 0 10 10" fill="currentColor"><polygon points="1,0 10,5 1,10"/></svg><span class="nc-eq"><i></i><i></i><i></i></span></span>
+      <span class="nc-text" data-en="Listen to the Knight" data-pt="Ouvir o Cavaleiro">Ouvir o Cavaleiro</span>
+    </button>
+  </div>
+
+  <section class="zone" data-zone="jardim">
+    <p>Atravesso um jardim, contornando uma estátua alta de mulher com uma balança nas mãos. De novo a sensação de já ter passado por ali — não lembrança, algo mais raso, mas familiar. No fim do corredor, uma porta entreaberta deixa escapar um fio de luz de vela.</p>
+  </section>
+
+  <div class="divider">✦</div>
+  <div class="narration-wrap">
+    <button class="narration-cue" data-audio="assets/audio/narration/line3.mp3">
+      <span class="nc-icon"><svg class="nc-play" viewBox="0 0 10 10" fill="currentColor"><polygon points="1,0 10,5 1,10"/></svg><span class="nc-eq"><i></i><i></i><i></i></span></span>
+      <span class="nc-text" data-en="Listen to the Knight" data-pt="Ouvir o Cavaleiro">Ouvir o Cavaleiro</span>
+    </button>
+  </div>
+
+  <section class="zone" data-zone="quarto">
+    <p>Dentro, uma cadeira virada para a janela, e nela uma criança de cabelo louro, iluminada pelo luar, cera escorrendo pelo castiçal ao lado. Não é qualquer criança.</p>
+
+    <p class="dialogue">— Eu não quero ter que ser rainha — ela fala para o vidro escuro, a voz embaçada de quem chorou até a garganta doer. — Isso é injusto.</p>
+
+    <p>Encosto na parede, ao lado da janela, sem me anunciar.</p>
+
+    <p class="dialogue">— Por que é injusto?</p>
+
+    <p>Minha voz sai firme, do jeito que sai sempre, mesmo falando com uma criança que mal me alcança a cintura. Ela se vira depressa, mas não grita. Os olhos, vermelhos de chorar, vão direto para a espada na minha cintura e ficam ali.</p>
+
+    <p class="dialogue">— Porque eu quero ser igual a você.</p>
+
+    <p class="dialogue">— Você sabe o que faz alguém como eu?</p>
+
+    <p>Ela não responde e parece que por não ter uma resposta a faz querer chorar. Desembainho a espada devagar, só para que ela veja, e a lâmina pega a luz da vela e devolve um risco branco no teto.</p>
+
+    <p class="dialogue">— É a espada mais legal que eu já vi de perto — ela diz, e não há medo nenhum na voz.</p>
+
+    <p class="dialogue">— Alguém como eu combate as injustiças.</p>
+
+    <p class="dialogue">— Com essa espada?</p>
+
+    <p class="dialogue">— Com coragem.</p>
+
+    <p>Ela vence a própria hesitação — vejo o instante exato em que decide, o corpo inteiro se inclinando pra frente antes da boca se abrir.</p>
+
+    <p class="dialogue">— Posso segurar ela um pouco?</p>
+
+    <p class="dialogue">— Só um pouco. Logo preciso ir.</p>
+
+    <p>Ponho a espada nas duas mãos dela, o peso maior do que ela espera — os braços descem um dedo antes de ela travar o cotovelo e segurar firme. Retiro sua mão esquerda do pomo, orientando a segurar a empunhadura somente com uma das mãos, e corrijo a direita, que aperta forte demais o suficiente pra tremer.</p>
+
+    <p class="dialogue">— Papai e mamãe nunca deixaram eu segurar uma espada — ela sussurra.</p>
+
+    <p class="dialogue">— Isso fica entre nós, Laura.</p>
+
+    <p>O nome sai antes de eu decidir dizê-lo, familiar demais para alguém que nunca vi.</p>
+
+  <div class="scene-wrap">
+    <button class="scene-cue" data-video="assets/video/espada-laura.mp4">
+      <span class="sc-thumb"><span class="sc-play-ico"><svg viewBox="0 0 10 10"><polygon points="1,0 10,5 1,10"/></svg></span></span>
+      <span class="sc-label" data-en="Watch the scene" data-pt="Ver a cena">Ver a cena</span>
+    </button>
+  </div>
+
+    <p>Deixo-a movimentar a lâmina devagar, os pés bem plantados, o quadril virado do jeito certo. Corrijo a postura algumas vezes, com a mão no ombro dela, nunca na arma. Ela obedece cada ajuste sem perguntar o porquê.</p>
+
+    <p>Depois de alguns minutos, o peso vence o entusiasmo e ela me devolve a espada com as duas mãos, com cuidado.</p>
+
+    <p class="dialogue">— Você é o melhor cavaleiro que existe.</p>
+
+    <p class="dialogue">— Vai conseguir dormir agora?</p>
+
+    <p>Ela faz que sim, um bocejo interrompendo o gesto no meio. Levanto-a — leve demais, um peso que mal registro nos braços — e a deito, puxando a coberta até o queixo.</p>
+
+    <p class="dialogue">— Você é amigo do meu pai? — pergunta, a voz já afundando no sono.</p>
+
+    <p>Penso na pergunta mais do que deveria. Não conheço homem nenhum a quem chamar de amigo, nem lembro de ter tido um pai, e mesmo assim a pergunta não me soa estranha — soa apenas incompleta, como uma resposta que existe em algum lugar que não consigo alcançar.</p>
+
+    <p class="dialogue">— Sou apenas um cavaleiro. Durma bem, Laura.</p>
+
+    <p>Ela já dorme antes que eu termine de falar. Refaço o caminho — o jardim, a estátua da mulher com a balança, o pátio onde o cão agora dorme. Ao sair pelo portão, tento reter o rosto da criança, e já não consigo. Fica só uma palavra, um nome que não lembro ter aprendido e que, mesmo assim, soube de cor.</p>
+
+  <div class="scene-wrap">
+    <button class="scene-cue" data-video="assets/video/portao-saida.mp4">
+      <span class="sc-thumb"><span class="sc-play-ico"><svg viewBox="0 0 10 10"><polygon points="1,0 10,5 1,10"/></svg></span></span>
+      <span class="sc-label" data-en="Watch the scene" data-pt="Ver a cena">Ver a cena</span>
+    </button>
+  </div>
+
+    <p style="text-align:center; margin-top:2.2rem;"><em>Laura.</em></p>
+  </section>
+
+  <footer class="endmark">Fim do Capítulo III</footer>
+  </div>
+</main>
+
+<!-- AUDIO WIDGET -->
+<div class="audio-widget muted" id="audioWidget">
+  <button id="audioToggle" aria-label="Ligar ou desligar som ambiente">
+    <svg id="iconOn" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+    <svg id="iconOff" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+  </button>
+  <div class="zone-label">
+    <span data-en="Ambient sound" data-pt="Som ambiente">Ambient sound</span>
+    <b id="zoneLabel">Courtyard</b>
+  </div>
+  <div class="bars" id="bars"><i></i><i></i><i></i></div>
+</div>
+
+<!-- CODEX MODAL -->
+<div class="codex-overlay" id="codexOverlay">
+  <div class="codex-card" id="codexCard">
+    <div class="codex-image-wrap">
+      <button class="codex-close" id="codexClose">✕</button>
+      <img class="codex-image-bg" id="codexImageBg" src="" alt="" aria-hidden="true">
+      <img class="codex-image" id="codexImage" src="" alt="">
+    </div>
+    <div class="codex-body">
+      <div class="codex-eyebrow" id="codexEyebrow">Codex</div>
+      <h3 class="codex-title" id="codexTitle">—</h3>
+      <div class="codex-pages" id="codexPages"></div>
+      <div class="codex-foot">
+        <button class="codex-nav" id="codexPrev" aria-label="Página anterior">‹</button>
+        <div class="codex-dots" id="codexDots"></div>
+        <button class="codex-nav" id="codexNext" aria-label="Próxima página">›</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<audio id="audioPatio" src="assets/audio/patio-loop.mp3" loop preload="auto"></audio>
+<audio id="audioJardim" src="assets/audio/jardim-loop.mp3" loop preload="auto"></audio>
+<audio id="audioQuarto" src="assets/audio/quarto-loop.mp3" loop preload="auto"></audio>
+<audio id="narrationPlayer" preload="none"></audio>
+
+<div class="video-overlay" id="videoOverlay">
+  <div class="video-card">
+    <button class="video-close" id="videoClose">✕</button>
+    <video id="scenePlayer" playsinline controls></video>
+  </div>
+</div>
+
+<script>
+/* ============ AUTO-LINK: liga TODA menção dos termos do codex ============ */
+const GLOSS_TERMS_EN = [
+  ['White Capital', 'capital-branca'],
+];
+const GLOSS_TERMS_PT = [
+  ['Capital Branca', 'capital-branca'],
+];
+
+function buildGlossMatcher(terms){
+  const map = new Map(terms);
+  const alt = terms.map(t => t[0].replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|');
+  const re = new RegExp('(?<![\\p{L}\\p{N}])(' + alt + ')(?![\\p{L}\\p{N}])', 'gu');
+  return { map, re };
+}
+const GLOSS_EN = buildGlossMatcher(GLOSS_TERMS_EN);
+const GLOSS_PT = buildGlossMatcher(GLOSS_TERMS_PT);
+
+function autoLinkElement(el, excludeKey, lang){
+  const { map, re } = lang === 'pt' ? GLOSS_PT : GLOSS_EN;
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+    acceptNode(node){
+      if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+      if(node.parentElement && node.parentElement.closest('.gloss')) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  const nodes = [];
+  let n;
+  while((n = walker.nextNode())) nodes.push(n);
+
+  nodes.forEach(node=>{
+    const text = node.nodeValue;
+    re.lastIndex = 0;
+    if(!re.test(text)) return;
+    re.lastIndex = 0;
+    const frag = document.createDocumentFragment();
+    let last = 0, m;
+    while((m = re.exec(text))){
+      const key = map.get(m[1]);
+      if(m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+      if(key === excludeKey){
+        frag.appendChild(document.createTextNode(m[1]));
+      } else {
+        const span = document.createElement('span');
+        span.className = 'gloss';
+        span.dataset.codex = key;
+        span.textContent = m[1];
+        frag.appendChild(span);
+      }
+      last = m.index + m[1].length;
+    }
+    if(last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+    node.parentNode.replaceChild(frag, node);
+  });
+}
+
+document.querySelectorAll('#langBlockEN section.zone p').forEach(p => autoLinkElement(p, null, 'en'));
+document.querySelectorAll('#langBlockPT section.zone p').forEach(p => autoLinkElement(p, null, 'pt'));
+
+/* ============ NÉVOA (mist) ============ */
+const mistCanvas = document.getElementById('mistCanvas');
+const ctx = mistCanvas.getContext('2d');
+let motes = [];
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function sizeCanvas(){
+  mistCanvas.width = window.innerWidth * devicePixelRatio;
+  mistCanvas.height = window.innerHeight * devicePixelRatio;
+  ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+}
+
+function initMotes(){
+  const count = window.innerWidth < 640 ? 20 : 38;
+  motes = Array.from({length:count}, ()=> ({
+    x: Math.random()*window.innerWidth,
+    y: Math.random()*window.innerHeight,
+    r: 1 + Math.random()*1.6,
+    speed: .12 + Math.random()*.22,
+    drift: Math.random()*Math.PI*2,
+    driftSpeed: .0015 + Math.random()*.004,
+    driftAmp: 8 + Math.random()*16,
+    opacity: .1 + Math.random()*.22
+  }));
+}
+
+function drawMist(){
+  ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+  motes.forEach(f=>{
+    f.y -= f.speed * 0.15;
+    f.y += f.speed;
+    f.drift += f.driftSpeed;
+    const x = f.x + Math.sin(f.drift) * f.driftAmp * 0.02;
+    if(f.y > window.innerHeight + 4){ f.y = -4; f.x = Math.random()*window.innerWidth; }
+    ctx.beginPath();
+    ctx.arc(x, f.y, f.r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(150,160,168,${f.opacity})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawMist);
+}
+
+if(!prefersReducedMotion){
+  sizeCanvas();
+  initMotes();
+  requestAnimationFrame(drawMist);
+  window.addEventListener('resize', ()=>{ sizeCanvas(); initMotes(); });
+}
+
+/* ============ CODEX DATA ============ */
+const CODEX_EN = {
+  "capital-branca": {
+    title: "The White Capital",
+    eyebrow: "Capital of the Kingdom of Redom",
+    image: "assets/images/codex-capital-branca.webp",
+    accent: "gold",
+    pages: [
+      [
+        "The White Capital, heart of the kingdom of Redom and the largest city in the known world. Built from pale limestone that blinds at noon, the city produces almost no raw materials of its own — it lives off tribute from the entire continent, and what it exports instead is decisions, doctrine, armies, and law. The stone is scrubbed daily, so that no stain might recall there is filth in the world, and statues of generals mark every plaza, reminding passersby exactly whom the city owes everything it has.",
+        "The city is laid out in concentric rings around the High Citadel. In the outermost ring sit the barracks and arsenals, where the day begins before sunrise for anyone serving in the ranks. Further in, the ring of markets and trades is the one place in the city where noise is tolerated — and even then, with discipline: when a patrol passes, the market falls silent, then resumes exactly where it left off, like a people with nothing to hide who still take the care of those who do. Next comes the ring of temples, dedicated to the Knight and the Judge, where Redom offers its most sincere faith: that everything is earned, nothing inherited. At the center of it all, the High Citadel houses the Hall of a Hundred Hymns and the shared throne of the General-King and the Mother-Queen, who reign side by side — he by combat, she by custom and blood."
+      ],
+      [
+        "It is a city of straight lines and severe angles, with no ornament that doesn't serve defense or military glory — where other peoples decorate, Redom reinforces. Its people take pride in a sobriety they mistake for virtue: they believe themselves the only ones who see the world without crutches, and therefore the only ones with the right to rule it."
+      ],
+      [
+        "Outside the official design of the four rings, pressed against the harbor, lies the dockside quarter — a slum of narrow alleys and packed shanties the city tolerates without ever truly acknowledging. This is where the Stained live: unacknowledged children of generations of war against the Grakh, too tall, too grey, to be only human. Slavery is outlawed in Redom, but the wage they're paid is barely different from it. No one drives them out. No one invites them in, either."
+      ]
+    ]
+  }
+};
+
+const CODEX_PT = {
+  "capital-branca": {
+    title: "Capital Branca",
+    eyebrow: "Capital do Reino de Redom",
+    image: "assets/images/codex-capital-branca.webp",
+    accent: "gold",
+    pages: [
+      [
+        "A Capital Branca, coração do reino de Redom e a maior cidade do mundo conhecido. Erguida em pedra calcária branca que cega ao meio-dia, a cidade não produz quase nenhuma matéria-prima — vive do tributo de todo o continente, e o que exporta são decisões, doutrina, exércitos e leis. A pedra é esfregada todos os dias, para que nenhuma mancha lembre que há sujeira no mundo, e estátuas de generais marcam cada praça, lembrando a quem passa a quem a cidade deve o que tem.",
+        "A cidade se organiza em anéis concêntricos ao redor da Cidadela Alta. No anel mais externo ficam as casernas e os arsenais, onde o dia começa antes do sol para quem serve nas fileiras. Mais adentro, o anel dos mercados e ofícios é o único ponto da cidade onde o barulho é tolerado — e mesmo assim com disciplina: quando uma patrulha passa, o mercado se cala, e retoma exatamente do ponto onde parou, como um povo que não tem nada a esconder e, ainda assim, tem o cuidado de quem tem. Depois vem o anel dos templos, dedicados ao Cavaleiro e à Juíza, onde Redom presta a sua fé mais sincera: a de que tudo se conquista, nada se herda. No centro de tudo, a Cidadela Alta abriga o Salão dos Cem Cânticos e o trono duplo do General-Rei e da Mãe-Rainha, que reinam lado a lado — ele vencido em combate no Torneio Real, ela escolhida por costume e sangue."
+      ],
+      [
+        "É uma cidade de linhas retas e ângulos severos, sem ornamento que não sirva à defesa ou à glória militar — onde outros povos enfeitam, Redom reforça. A população se orgulha de uma sobriedade confundida com virtude: considera-se o único povo que enxerga o mundo sem muletas, e por isso o único com o direito de dominá-lo."
+      ],
+      [
+        "Fora do desenho oficial dos quatro anéis, encostado ao porto, fica o bairro das docas — uma favela de vielas apertadas e barracos amontoados que a cidade tolera sem nunca reconhecer de fato. É ali que vivem os Manchados: filhos não reconhecidos de gerações de guerra contra os Grakh, altos demais, cinzentos demais, para serem só humanos. A escravidão é proibida em Redom, mas o salário que recebem mal é diferente dela. Ninguém os expulsa. Ninguém também os convida pra dentro dos anéis."
+      ]
+    ]
+  }
+};
+
+/* ============ CODEX MODAL LOGIC ============ */
+const overlay = document.getElementById('codexOverlay');
+const cardEl = document.getElementById('codexCard');
+const imgEl = document.getElementById('codexImage');
+const imgBgEl = document.getElementById('codexImageBg');
+const titleEl = document.getElementById('codexTitle');
+const eyebrowEl = document.getElementById('codexEyebrow');
+const pagesEl = document.getElementById('codexPages');
+const dotsEl = document.getElementById('codexDots');
+const prevBtn = document.getElementById('codexPrev');
+const nextBtn = document.getElementById('codexNext');
+
+let currentEntry = null;
+let currentPage = 0;
+
+let currentLang = 'en';
+
+function openCodex(key){
+  const CODEX = currentLang === 'pt' ? CODEX_PT : CODEX_EN;
+  const entry = CODEX[key];
+  if(!entry){ return; }
+  currentEntry = entry;
+  currentPage = 0;
+  imgEl.src = entry.image;
+  imgEl.alt = entry.title;
+  imgBgEl.src = entry.image;
+  titleEl.textContent = entry.title;
+  eyebrowEl.textContent = entry.eyebrow;
+  cardEl.style.setProperty('--codex-accent', 'var(--gold)');
+
+  pagesEl.innerHTML = '';
+  dotsEl.innerHTML = '';
+  entry.pages.forEach((page, i)=>{
+    const div = document.createElement('div');
+    div.className = 'codex-page' + (i===0 ? ' active' : '');
+    div.innerHTML = page.map(t=>`<p>${t}</p>`).join('');
+    pagesEl.appendChild(div);
+
+    const dot = document.createElement('span');
+    if(i===0) dot.className='active';
+    dotsEl.appendChild(dot);
+  });
+
+  updateNav();
+  autoLinkElement(pagesEl, key, currentLang);
+  overlay.classList.add('open');
+}
+
+function updateNav(){
+  const pages = pagesEl.querySelectorAll('.codex-page');
+  pages.forEach((p,i)=> p.classList.toggle('active', i===currentPage));
+  dotsEl.querySelectorAll('span').forEach((d,i)=> d.classList.toggle('active', i===currentPage));
+  prevBtn.disabled = currentPage === 0;
+  nextBtn.disabled = currentPage === pages.length - 1;
+}
+
+function closeCodex(){ overlay.classList.remove('open'); }
+
+document.getElementById('codexClose').addEventListener('click', closeCodex);
+overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeCodex(); });
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeCodex(); });
+
+prevBtn.addEventListener('click', ()=>{ if(currentPage>0){ currentPage--; updateNav(); } });
+nextBtn.addEventListener('click', ()=>{
+  const total = pagesEl.querySelectorAll('.codex-page').length;
+  if(currentPage < total-1){ currentPage++; updateNav(); }
+});
+
+document.addEventListener('click', (e)=>{
+  const g = e.target.closest('.gloss');
+  if(g){ e.preventDefault(); openCodex(g.dataset.codex); }
+});
+
+/* ============ AUDIO SYSTEM ============ */
+const audioPatio = document.getElementById('audioPatio');
+const audioJardim = document.getElementById('audioJardim');
+const audioQuarto = document.getElementById('audioQuarto');
+const audioToggle = document.getElementById('audioToggle');
+const iconOn = document.getElementById('iconOn');
+const iconOff = document.getElementById('iconOff');
+const zoneLabel = document.getElementById('zoneLabel');
+const widget = document.getElementById('audioWidget');
+const enterBtn = document.getElementById('enterBtn');
+const enterState = document.getElementById('enterState');
+
+let audioEnabled = false;
+let currentZone = 'patio';
+let oneShotTimer = null;
+
+const ZONE_NAMES = {
+  en: { patio: 'Courtyard', jardim: 'The Statue Garden', quarto: "Laura's Chamber" },
+  pt: { patio: 'Pátio e Corredores', jardim: 'O Jardim da Estátua', quarto: 'O Quarto de Laura' }
+};
+const ONE_SHOTS = {
+  patio: 'assets/audio/eco-passos.mp3',
+  jardim: 'assets/audio/vento-jardim.mp3'
+};
+
+let duckActive = false;
+const DUCK_FACTOR = 0.82;
+const ZONE_BASE_VOLUME = { patio:.5, jardim:.42, quarto:.28 };
+
+function setVolumes(zone, immediate){
+  const factor = duckActive ? DUCK_FACTOR : 1;
+  const targetPatio = zone === 'patio' ? ZONE_BASE_VOLUME.patio * factor : 0;
+  const targetJardim = zone === 'jardim' ? ZONE_BASE_VOLUME.jardim * factor : 0;
+  const targetQuarto = zone === 'quarto' ? ZONE_BASE_VOLUME.quarto * factor : 0;
+  fadeTo(audioPatio, targetPatio, immediate ? 0 : 1400);
+  fadeTo(audioJardim, targetJardim, immediate ? 0 : 1400);
+  fadeTo(audioQuarto, targetQuarto, immediate ? 0 : 1400);
+}
+
+function fadeTo(el, target, duration){
+  const myFadeId = (el._fadeId = (el._fadeId || 0) + 1);
+  const start = el.volume;
+  const clampedTarget = Math.min(1, Math.max(0, target));
+  if(duration <= 0){ el.volume = clampedTarget; return; }
+  const t0 = performance.now();
+  function step(now){
+    if(el._fadeId !== myFadeId) return;
+    const p = Math.min(1, (now - t0) / duration);
+    el.volume = Math.min(1, Math.max(0, start + (clampedTarget - start) * p));
+    if(p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function playOneShotSoon(){
+  clearTimeout(oneShotTimer);
+  const delay = 9000 + Math.random() * 14000;
+  oneShotTimer = setTimeout(()=>{
+    if(audioEnabled){
+      const src = ONE_SHOTS[currentZone];
+      if(src){
+        const a = new Audio(src);
+        a.volume = 0.35 + Math.random()*0.12;
+        a.play().catch(()=>{});
+      }
+    }
+    playOneShotSoon();
+  }, delay);
+}
+
+function updateZoneUI(zone){
+  currentZone = zone;
+  zoneLabel.textContent = ZONE_NAMES[currentLang][zone];
+  document.documentElement.style.setProperty('--zone-accent', zone==='jardim' ? 'var(--moon)' : 'var(--gold)');
+  document.documentElement.style.setProperty('--zone-accent-soft', zone==='jardim' ? 'var(--moon-soft)' : 'var(--gold-soft)');
+  mistCanvas.classList.toggle('dimmed', zone === 'quarto');
+  if(audioEnabled && !videoOpen) setVolumes(zone, false);
+}
+
+function enableAudio(){
+  audioEnabled = true;
+  audioPatio.volume = 0; audioJardim.volume = 0; audioQuarto.volume = 0;
+  audioPatio.play().catch(()=>{});
+  audioJardim.play().catch(()=>{});
+  audioQuarto.play().catch(()=>{});
+  setVolumes(currentZone, false);
+  widget.classList.remove('muted');
+  iconOn.style.display=''; iconOff.style.display='none';
+  playOneShotSoon();
+}
+
+function disableAudio(){
+  audioEnabled = false;
+  fadeTo(audioPatio, 0, 500);
+  fadeTo(audioJardim, 0, 500);
+  fadeTo(audioQuarto, 0, 500);
+  widget.classList.add('muted');
+  iconOn.style.display='none'; iconOff.style.display='';
+  clearTimeout(oneShotTimer);
+}
+
+enterBtn.addEventListener('click', ()=>{
+  if(!audioEnabled){
+    enableAudio();
+    enterState.textContent = currentLang === 'pt' ? '✦ som ligado' : '✦ sound on';
+  }
+  document.querySelector('main').scrollIntoView({behavior:'smooth'});
+});
+
+audioToggle.addEventListener('click', ()=>{
+  if(audioEnabled){ disableAudio(); } else { enableAudio(); }
+});
+
+/* Zone detection via scroll */
+const zoneSections = document.querySelectorAll('section.zone');
+const io = new IntersectionObserver((entries)=>{
+  let best = null, bestRatio = 0;
+  entries.forEach(en=>{
+    if(en.intersectionRatio > bestRatio){ bestRatio = en.intersectionRatio; best = en.target; }
+  });
+  if(best){
+    const zone = best.dataset.zone;
+    if(zone !== currentZone) updateZoneUI(zone);
+  }
+}, { threshold:[0.15,0.3,0.5,0.7,0.9], rootMargin:'-15% 0px -15% 0px' });
+zoneSections.forEach(s=>io.observe(s));
+
+/* ============ LANGUAGE TOGGLE ============ */
+const langToggle = document.getElementById('langToggle');
+const langBlockEN = document.getElementById('langBlockEN');
+const langBlockPT = document.getElementById('langBlockPT');
+
+function setLanguage(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+
+  langBlockEN.classList.toggle('active', lang === 'en');
+  langBlockPT.classList.toggle('active', lang === 'pt');
+
+  langToggle.querySelectorAll('button').forEach(b=>{
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+
+  document.querySelectorAll('[data-en][data-pt]').forEach(el=>{
+    if(el.id === 'enterState' && audioEnabled){
+      el.textContent = lang === 'pt' ? '✦ som ligado' : '✦ sound on';
+    } else {
+      el.textContent = lang === 'pt' ? el.dataset.pt : el.dataset.en;
+    }
+  });
+
+  zoneLabel.textContent = ZONE_NAMES[lang][currentZone];
+
+  document.title = lang === 'pt'
+    ? 'O Cavaleiro — Capítulo III · As Quatro Vontades'
+    : 'The Knight — Chapter III · The Four Wills';
+
+  if(typeof stopNarration === 'function') stopNarration();
+  closeCodex();
+}
+
+langToggle.addEventListener('click', (e)=>{
+  const btn = e.target.closest('button[data-lang]');
+  if(btn) setLanguage(btn.dataset.lang);
+});
+
+/* ============ NARRATION (voz do Cavaleiro) ============ */
+const narrationPlayer = document.getElementById('narrationPlayer');
+const narrationCues = document.querySelectorAll('.narration-cue');
+let activeCueBtn = null;
+
+function setDuck(on){
+  duckActive = on;
+  setVolumes(currentZone, false);
+}
+
+function stopNarration(){
+  narrationPlayer.pause();
+  narrationPlayer.currentTime = 0;
+  if(activeCueBtn) activeCueBtn.classList.remove('playing');
+  activeCueBtn = null;
+  setDuck(false);
+}
+
+narrationCues.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const isThisPlaying = btn.classList.contains('playing');
+    if(isThisPlaying){
+      stopNarration();
+      return;
+    }
+    stopNarration();
+    narrationPlayer.src = btn.dataset.audio;
+    narrationPlayer.play().catch(()=>{});
+    btn.classList.add('playing');
+    activeCueBtn = btn;
+    setDuck(true);
+  });
+});
+
+narrationPlayer.addEventListener('ended', stopNarration);
+
+const cueObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.classList.add('visible');
+      cueObserver.unobserve(en.target);
+    }
+  });
+}, { threshold:.4 });
+narrationCues.forEach(c=>cueObserver.observe(c));
+
+/* ============ VIDEO SCENES ============ */
+const videoOverlay = document.getElementById('videoOverlay');
+const scenePlayer = document.getElementById('scenePlayer');
+const videoClose = document.getElementById('videoClose');
+let ambientWasEnabled = false;
+let videoOpen = false;
+
+function openScene(src){
+  stopNarration();
+  videoOpen = true;
+  ambientWasEnabled = audioEnabled;
+  if(audioEnabled){ fadeTo(audioPatio, 0, 500); fadeTo(audioJardim, 0, 500); fadeTo(audioQuarto, 0, 500); }
+  scenePlayer.src = src;
+  videoOverlay.classList.add('open');
+  scenePlayer.currentTime = 0;
+  scenePlayer.play().catch(()=>{});
+}
+
+function closeScene(){
+  scenePlayer.pause();
+  videoOverlay.classList.remove('open');
+  scenePlayer.removeAttribute('src');
+  scenePlayer.load();
+  videoOpen = false;
+  if(ambientWasEnabled) setVolumes(currentZone, false);
+}
+
+document.querySelectorAll('.scene-cue').forEach(btn=>{
+  btn.addEventListener('click', ()=> openScene(btn.dataset.video));
+});
+videoClose.addEventListener('click', closeScene);
+videoOverlay.addEventListener('click', (e)=>{ if(e.target === videoOverlay) closeScene(); });
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && videoOverlay.classList.contains('open')) closeScene(); });
+</script>
+</body>
+</html>
